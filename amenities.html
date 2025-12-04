@@ -3,431 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goba Peaks - Premium Amenities</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta name="description" content="Discover world-class amenities at Goba Peaks including high-speed WiFi, private pools, gourmet kitchens, concierge services, and premium transportation.">
+    <meta name="keywords" content="Goba Peaks amenities, luxury villa amenities, premium services Tanzania, concierge Dar es Salaam">
+    <meta name="author" content="Whistling Woods">
+    <meta name="robots" content="index, follow">
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #2c3e50;
-            line-height: 1.6;
-        }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.gobapeaks.com/amenities.html">
+    <meta property="og:title" content="Premium Amenities - Goba Peaks Luxury Villas">
+    <meta property="og:description" content="Experience luxury at every turn with our world-class amenities, personalized services, and premium facilities.">
+    <meta property="og:image" content="https://www.gobapeaks.com/image/AD4I8458.jpg">
 
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff9999 50%, #ff6b6b 100%);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .logo-icon::before {
-            content: '🏠';
-            font-size: 24px;
-        }
-
-        .logo-text h1 {
-            font-size: 1.5rem;
-            color: #1a365d;
-            font-weight: 700;
-        }
-
-        .logo-text p {
-            font-size: 0.75rem;
-            color: #666;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 500;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 0.5px;
-        }
-
-        nav ul li a:hover {
-            color: #ff6b6b;
-        }
-
-        .contact-info {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .phone {
-            color: #666;
-            font-size: 0.95rem;
-        }
-
-        .reserve-btn {
-            background: linear-gradient(135deg, #ff6b6b, #ff9999);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: transform 0.3s;
-        }
-
-        .reserve-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-tag {
-            display: inline-block;
-            background: linear-gradient(135deg, #ff6b6b, #ff9999);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: #1a365d;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: #666;
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .amenities-showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .amenity-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-        }
-
-        .amenity-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .amenity-image {
-            height: 180px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .amenity-icon {
-            font-size: 4rem;
-        }
-
-        .amenity-content {
-            padding: 1.5rem;
-        }
-
-        .amenity-content h3 {
-            font-size: 1.3rem;
-            color: #1a365d;
-            margin-bottom: 0.75rem;
-        }
-
-        .amenity-content p {
-            color: #666;
-            line-height: 1.7;
-        }
-
-        .services-luxury {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-luxury-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .service-luxury-image {
-            height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .luxury-icon {
-            font-size: 5rem;
-        }
-
-        .service-luxury-content {
-            padding: 2rem;
-        }
-
-        .service-luxury-content h3 {
-            font-size: 1.8rem;
-            color: #1a365d;
-            margin-bottom: 1rem;
-        }
-
-        .service-luxury-content p {
-            color: #666;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-luxury-content ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .service-luxury-content li {
-            color: #666;
-            padding: 0.5rem 0;
-            font-size: 1rem;
-        }
-
-        /* Footer Section */
-        footer {
-            background: #1a365d;
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            color: #ff9999;
-        }
-
-        .footer-section p, .footer-section a {
-            color: #ccc;
-            line-height: 2;
-            text-decoration: none;
-            display: block;
-        }
-
-        .footer-section a:hover {
-            color: #ff9999;
-        }
-
-        .newsletter input {
-            width: 100%;
-            padding: 0.75rem;
-            border-radius: 25px;
-            border: none;
-            margin-bottom: 1rem;
-        }
-
-        .newsletter button {
-            background: linear-gradient(135deg, #ff6b6b, #ff9999);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #999;
-        }
-
-        /* Dot Spinner Page Transition Animation Styles */
-        .transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.95);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .transition-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .dot-spinner {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-        }
-
-        .dot-spinner div {
-            position: absolute;
-            top: 33px;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: #ff6b6b;
-            animation-timing-function: cubic-bezier(0, 1, 1, 0);
-        }
-
-        .dot-spinner div:nth-child(1) {
-            left: 8px;
-            animation: dot-spinner-1 0.6s infinite;
-        }
-
-        .dot-spinner div:nth-child(2) {
-            left: 8px;
-            animation: dot-spinner-2 0.6s infinite;
-        }
-
-        .dot-spinner div:nth-child(3) {
-            left: 32px;
-            animation: dot-spinner-2 0.6s infinite;
-        }
-
-        .dot-spinner div:nth-child(4) {
-            left: 56px;
-            animation: dot-spinner-3 0.6s infinite;
-        }
-
-        @keyframes dot-spinner-1 {
-            0% {
-                transform: scale(0);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes dot-spinner-3 {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(0);
-            }
-        }
-
-        @keyframes dot-spinner-2 {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(24px, 0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .dot-spinner {
-                width: 60px;
-                height: 60px;
-            }
-
-            .dot-spinner div {
-                top: 23px;
-                width: 10px;
-                height: 10px;
-            }
-
-            .dot-spinner div:nth-child(1) {
-                left: 5px;
-            }
-
-            .dot-spinner div:nth-child(2) {
-                left: 5px;
-            }
-
-            .dot-spinner div:nth-child(3) {
-                left: 22px;
-            }
-
-            .dot-spinner div:nth-child(4) {
-                left: 39px;
-            }
-
-            @keyframes dot-spinner-2 {
-                0% {
-                    transform: translate(0, 0);
-                }
-                100% {
-                    transform: translate(17px, 0);
-                }
-            }
-        }
-    </style>
+    <title>Premium Amenities - Goba Peaks | Luxury Services</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
@@ -448,7 +37,21 @@
             </ul>
             <div class="contact-info">
                 <span class="phone">📞 (+255) 749 440 044</span>
-                <a href="#reserve" class="reserve-btn">Reserve Now</a>
+                <a href="reserve.html" class="reserve-btn">Reserve Now</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="suites.html">SUITES</a></li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li><a href="reserve.html">RESERVE NOW</a></li>
+                    <li><a href="amenities.html">AMENITIES</a></li>
+                </ul>
             </div>
         </nav>
     </header>
@@ -642,13 +245,16 @@
                 <h3>Contact Info</h3>
                 <p>📞 +255 749 440 044</p>
                 <p>📧 info@whistlingwoods.co.tz</p>
-                <p>📍 Kisasa South<br>Dodoma, Tanzania</p>
+                <p>📍 Goba<br>Dar es salaam, Tanzania</p>
             </div>
             <div class="footer-section newsletter">
                 <h3>Stay Updated</h3>
-                <input type="email" placeholder="Enter your email">
-                <button>Subscribe</button>
+                <form id="newsletterForm">
+                    <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
                 <p style="margin-top: 1rem; font-size: 0.85rem;">Get exclusive offers and the latest updates delivered to your inbox.</p>
+                <div id="newsletterMessage" class="newsletter-message"></div>
             </div>
         </div>
         <div class="footer-bottom">
@@ -666,33 +272,6 @@
         </div>
     </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Dot Spinner Page Transition Animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const overlay = document.querySelector('.transition-overlay');
-
-            // Show the overlay immediately
-            overlay.classList.add('active');
-
-            // Hide the overlay after 1.5 seconds to simulate page load
-            setTimeout(function() {
-                overlay.classList.remove('active');
-            }, 1500);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

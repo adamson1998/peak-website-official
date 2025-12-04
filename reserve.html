@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reserve your luxury stay at Goba Peaks. Book premium villas in Dar es Salaam with easy online reservation. Contact us for availability and special requests.">
+    <meta name="keywords" content="book Goba Peaks, reserve luxury villa Tanzania, Dar es Salaam booking, villa reservation">
+    <meta name="author" content="Whistling Woods">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.gobapeaks.com/reserve.html">
+    <meta property="og:title" content="Reserve Your Stay - Goba Peaks Luxury Villas">
+    <meta property="og:description" content="Book your luxury experience at Goba Peaks. Easy online reservation with 24/7 customer support.">
+    <meta property="og:image" content="https://www.gobapeaks.com/image/AD4I8481(1).jpg">
+
+    <title>Reserve Your Stay - Goba Peaks | Book Luxury Villa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <h1>Goba Peaks</h1>
+                    <p>By Whistling Woods</p>
+                </div>
+            </div>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="suites.html">SUITES</a></li>
+                <li><a href="amenities.html">AMENITIES</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+            </ul>
+            <div class="contact-info">
+                <span class="phone">=� (+255) 749 440 044</span>
+                <a href="reserve.html" class="reserve-btn">Reserve Now</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="mobile-nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="suites.html">SUITES</a></li>
+                    <li><a href="about.html">ABOUT US</a></li>
+                    <li><a href="reserve.html">RESERVE NOW</a></li>
+                    <li><a href="amenities.html">AMENITIES</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Reservation Section -->
+    <section class="reservation-section" id="reserve">
+        <div class="reservation-container">
+            <div class="section-header">
+                <span class="section-tag">Book Your Stay</span>
+                <h2>Reserve Your Luxury Experience</h2>
+                <p>Complete the form below to reserve your stay at Goba Peaks. Our team will contact you within 24 hours to confirm your booking.</p>
+            </div>
+
+            <div class="reservation-content">
+                <div class="reservation-form-wrapper">
+                    <form id="reservationForm" class="reservation-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required placeholder="+255 XXX XXX XXX">
+                            </div>
+                            <div class="form-group">
+                                <label for="guests">Number of Guests *</label>
+                                <select id="guests" name="guests" required>
+                                    <option value="">Select guests</option>
+                                    <option value="1">1 Guest</option>
+                                    <option value="2">2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5 Guests</option>
+                                    <option value="6">6 Guests</option>
+                                    <option value="7">7 Guests</option>
+                                    <option value="8">8+ Guests</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkIn">Check-In Date *</label>
+                                <input type="date" id="checkIn" name="checkIn" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkOut">Check-Out Date *</label>
+                                <input type="date" id="checkOut" name="checkOut" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="suitePreference">Suite Preference</label>
+                            <select id="suitePreference" name="suitePreference">
+                                <option value="">No preference</option>
+                                <option value="luxury-suite">Luxury Goba Suite</option>
+                                <option value="master-suite">Master Bedroom Suite</option>
+                                <option value="family-suite">Family Suite</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="specialRequests">Special Requests</label>
+                            <textarea id="specialRequests" name="specialRequests" rows="4" placeholder="Any special requirements or requests? (dietary needs, early check-in, etc.)"></textarea>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <span>I agree to the <a href="#terms" class="link">Terms & Conditions</a> and <a href="#privacy" class="link">Privacy Policy</a></span>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary btn-large">
+                                <span class="btn-text">Submit Reservation</span>
+                                <span class="btn-loader" style="display: none;">Processing...</span>
+                            </button>
+                        </div>
+
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+
+                <div class="reservation-info">
+                    <div class="info-card">
+                        <div class="info-icon">=�</div>
+                        <h3>Need Help?</h3>
+                        <p>Our reservation team is available 24/7 to assist you.</p>
+                        <a href="tel:+255749440044" class="info-link">+255 749 440 044</a>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">=�</div>
+                        <h3>Email Us</h3>
+                        <p>Send us your questions or special requests.</p>
+                        <a href="mailto:info@whistlingwoods.co.tz" class="info-link">info@whistlingwoods.co.tz</a>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">�</div>
+                        <h3>Check-In/Out Times</h3>
+                        <p>Check-in: 2:00 PM<br>Check-out: 11:00 AM</p>
+                        <p class="info-note">Early check-in & late check-out available on request</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">=�</div>
+                        <h3>Payment & Cancellation</h3>
+                        <p>50% deposit required to confirm booking</p>
+                        <p class="info-note">Free cancellation up to 48 hours before check-in</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Goba Peaks</h3>
+                <p>By Whistling Woods</p>
+                <p style="margin-top: 1rem;">Experience the ultimate in luxury residential living with our carefully curated collection of premium villas. Where comfort meets elegance and every moment becomes unforgettable.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="suites.html">Suites</a>
+                <a href="amenities.html">Amenities</a>
+                <a href="about.html">About Us</a>
+                <a href="reserve.html">Reserve Now</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>=� +255 749 440 044</p>
+                <p>=� info@whistlingwoods.co.tz</p>
+                <p>=� Goba<br>Dar es salaam, Tanzania</p>
+            </div>
+            <div class="footer-section newsletter">
+                <h3>Stay Updated</h3>
+                <form id="newsletterForm">
+                    <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p style="margin-top: 1rem; font-size: 0.85rem;">Get exclusive offers and the latest updates delivered to your inbox.</p>
+                <div id="newsletterMessage" class="newsletter-message"></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>� 2025 Goba Peaks by Whistling Woods. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dot Spinner Page Transition Overlay -->
+    <div class="transition-overlay">
+        <div class="dot-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -329,3 +329,52 @@ function updatePricing() {
 if (checkInInput || suiteSelect) {
     updatePricing();
 }
+
+// Promotional Popup Logic
+const promoPopup = document.getElementById('promoPopup');
+if (promoPopup) {
+    const promoClose = document.getElementById('promoClose');
+    const promoMaybeLater = document.getElementById('promoMaybeLater');
+
+    // Check if user has already seen the popup
+    const hasSeenPromo = localStorage.getItem('promoPopupSeen');
+
+    // Show popup after 3 seconds if not seen before
+    if (!hasSeenPromo) {
+        setTimeout(() => {
+            promoPopup.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when popup is open
+        }, 3000);
+    }
+
+    // Function to close popup
+    function closePromoPopup() {
+        promoPopup.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+        localStorage.setItem('promoPopupSeen', 'true'); // Remember that user has seen it
+    }
+
+    // Close popup when clicking X button
+    if (promoClose) {
+        promoClose.addEventListener('click', closePromoPopup);
+    }
+
+    // Close popup when clicking "Maybe Later"
+    if (promoMaybeLater) {
+        promoMaybeLater.addEventListener('click', closePromoPopup);
+    }
+
+    // Close popup when clicking outside the popup content
+    promoPopup.addEventListener('click', function(e) {
+        if (e.target === promoPopup) {
+            closePromoPopup();
+        }
+    });
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && promoPopup.classList.contains('active')) {
+            closePromoPopup();
+        }
+    });
+}

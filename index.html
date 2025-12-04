@@ -47,17 +47,13 @@
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff9999 50%, #ff6b6b 100%);
+            background: url('image/logo.png') no-repeat center center;
+            background-size: contain;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-        }
-
-        .logo-icon::before {
-            content: '🏠';
-            font-size: 24px;
         }
 
         .logo-text h1 {
@@ -194,9 +190,9 @@
         }
 
         .slide {
-            position: absolute;
+            position: center;
             width: 100%;
-            height: 100%;
+            height: 140%;
             opacity: 0;
             transition: opacity 1s ease-in-out;
         }
@@ -206,15 +202,15 @@
         }
 
         .slide-1 {
-            background: linear-gradient(rgba(26, 54, 93, 0.4), rgba(26, 54, 93, 0.4)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a365d" width="1200" height="800"/><circle cx="600" cy="400" r="300" fill="%23ff6b6b" opacity="0.1"/></svg>');
+            background: linear-gradient(rgba(26, 54, 93, 0.4), rgba(26, 54, 93, 0.4)),
+                        url('image/back1.jpeg');
             background-size: cover;
             background-position: center;
         }
 
         .slide-2 {
             background: linear-gradient(rgba(255, 107, 107, 0.3), rgba(255, 153, 153, 0.3)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23f0f4f8" width="1200" height="800"/><rect x="300" y="200" width="600" height="400" fill="%23ff9999" opacity="0.2"/></svg>');
+                        url('image/AD4I8481(1).jpg');
             background-size: cover;
             background-position: center;
         }
@@ -629,7 +625,7 @@
         /* Amenities Section Styles */
         .amenities-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -638,7 +634,7 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 2 100px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s;
         }
 
@@ -647,7 +643,7 @@
         }
 
         .amenity-image {
-            height: 180px;
+            height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1206,6 +1202,185 @@
             .services-luxury {
                 grid-template-columns: 1fr;
             }
+
+            .amenities-showcase {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .amenity-card {
+                border-radius: 25px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                overflow: hidden;
+                transition: transform 0.4s ease, box-shadow 0.4s ease;
+            }
+
+            .amenity-card:hover {
+                transform: translateY(-12px) scale(1.02);
+                box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            }
+
+            .amenity-image {
+                height: 200px;
+                position: relative;
+            }
+
+            .amenity-image::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 153, 153, 0.1));
+                pointer-events: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .amenities-showcase {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .amenity-card {
+                border-radius: 20px;
+                margin: 0 1rem;
+            }
+
+            .amenity-image {
+                height: 180px;
+            }
+
+            .services {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+
+    <!-- Dot Spinner Page Transition Animation Styles -->
+    <style>
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .transition-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dot-spinner {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .dot-spinner div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .dot-spinner div:nth-child(1) {
+            left: 8px;
+            animation: dot-spinner-1 0.6s infinite;
+        }
+
+        .dot-spinner div:nth-child(2) {
+            left: 8px;
+            animation: dot-spinner-2 0.6s infinite;
+        }
+
+        .dot-spinner div:nth-child(3) {
+            left: 32px;
+            animation: dot-spinner-2 0.6s infinite;
+        }
+
+        .dot-spinner div:nth-child(4) {
+            left: 56px;
+            animation: dot-spinner-3 0.6s infinite;
+        }
+
+        @keyframes dot-spinner-1 {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes dot-spinner-3 {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes dot-spinner-2 {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dot-spinner {
+                width: 60px;
+                height: 60px;
+            }
+
+            .dot-spinner div {
+                top: 23px;
+                width: 10px;
+                height: 10px;
+            }
+
+            .dot-spinner div:nth-child(1) {
+                left: 5px;
+            }
+
+            .dot-spinner div:nth-child(2) {
+                left: 5px;
+            }
+
+            .dot-spinner div:nth-child(3) {
+                left: 22px;
+            }
+
+            .dot-spinner div:nth-child(4) {
+                left: 39px;
+            }
+
+            @keyframes dot-spinner-2 {
+                0% {
+                    transform: translate(0, 0);
+                }
+                100% {
+                    transform: translate(17px, 0);
+                }
+            }
         }
     </style>
 </head>
@@ -1249,7 +1424,7 @@
 
     <!-- Hero Slider -->
     <section class="hero-slider" id="home">
-        <div class="slide slide-1 active">
+        <div class="slide slide-1">
             <div class="hero-content">
                 <div class="location-tag">📍 Premium Location • Dar es salaam</div>
                 <h2>Luxury Redefined.<br><span class="highlight">Comfort Perfected.</span></h2>
@@ -1283,8 +1458,8 @@
             </div>
         </div>
         <div class="slider-dots">
-            <span class="dot active" onclick="changeSlide(0)"></span>
-            <span class="dot" onclick="changeSlide(1)"></span>
+            <span class="dot" onclick="changeSlide(0)"></span>
+            <span class="dot active" onclick="changeSlide(1)"></span>
             <span class="dot" onclick="changeSlide(2)"></span>
         </div>
     </section>
@@ -1321,72 +1496,58 @@
 
         <div class="amenities-showcase">
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #e3f2fd, #90caf9);">
-                    <div class="amenity-icon">📶</div>
-                </div>
-                <div class="amenity-content">
-                    <h3>High-Speed Wi-Fi</h3>
-                    <p>Stay connected with blazing-fast internet throughout the property. Perfect for remote work, streaming, or keeping in touch with loved ones.</p>
+                <div class="amenity-image">
+                    <img src="image/AD4I8315 (1).jpg" alt="High-Speed Wi-Fi" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #e8f5e9, #66bb6a);">
-                    <div class="amenity-icon">🅿️</div>
-                </div>
-                <div class="amenity-content">
-                    <h3>Free Parking</h3>
-                    <p>Secure, covered parking space for your vehicle with 24/7 surveillance and gated access.</p>
+                <div class="amenity-image">
+                    <img src="image/AD4I8315 (1).jpg" alt="Free Parking" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #f3e5f5, #ba68c8);">
-                    <div class="amenity-icon">🛏️</div>
-                </div>
-                <div class="amenity-content">
-                    <h3>Premium Bedding</h3>
-                    <p>Egyptian cotton sheets, memory foam pillows, and luxury duvets ensure the most restful sleep. Hypoallergenic options available.</p>
+                <div class="amenity-image">
+                    <img src="image/unnamed (1).webp" alt="Premium Bedding" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #fff8e1, #ffd54f);">
-                    <div class="amenity-icon">📺</div>
-                </div>
-                <div class="amenity-content">
-                    <h3>Smart TV & Entertainment</h3>
-                    <p>65-inch smart TV with premium cable channels, Netflix, and streaming services. Bluetooth sound system for your entertainment.</p>
+                <div class="amenity-image">
+                    <img src="image/unnamed (1).webp" alt="Smart TV & Entertainment" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #fce4ec, #ec407a);">
-                    <div class="amenity-icon">🧺</div>
+                <div class="amenity-image">
+                    <img src="image/unnamed (1).webp" alt="Laundry Facilities" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-                <div class="amenity-content">
-                    <h3>Laundry Facilities</h3>
-                    <p>In-unit washer and dryer with premium detergents provided. Iron, ironing board, and steamer available.</p>
+            </div>
+
+           
+
+            <div class="amenity-card">
+                <div class="amenity-image">
+                    <img src="image/unnamed (1).webp" alt="Fully Equipped Kitchen" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #f3e5f5, #ab47bc);">
-                    <div class="amenity-icon">🧹</div>
-                </div>
-                <div class="amenity-content">
-                    <h3>Daily Housekeeping</h3>
-                    <p>Professional housekeeping service available daily. Fresh towels, linens, and essential restocking included.</p>
+                <div class="amenity-image">
+                    <img src="image/AD4I8458.jpg" alt="Swimming Pool" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #fff9c4, #fff176);">
-                    <div class="amenity-icon">🍽️</div>
+                <div class="amenity-image">
+                    <img src="image/AD4I8460.jpg" alt="Fitness Center" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
-                <div class="amenity-content">
-                    <h3>Fully Equipped Kitchen</h3>
-                    <p>Complete kitchen setup with refrigerator, stove, oven, microwave, dishwasher, and all necessary cookware, dishes, and utensils.</p>
+            </div>
+
+            <div class="amenity-card">
+                <div class="amenity-image">
+                    <img src="image/AD4I8476.jpg" alt="Concierge Service" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -1456,22 +1617,11 @@
             <div class="portfolio-section">
                 <h3>Our Portfolio</h3>
                 <p>Explore our diverse range of signature properties across every tier of luxury</p>
-                <div class="portfolio-grid">
-                    <div class="portfolio-item">
-                        <div class="portfolio-icon">🏢</div>
-                        <h4>Apartments</h4>
-                        <p>Modern urban living spaces</p>
-                    </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-icon">🏡</div>
-                        <h4>Penthouses</h4>
-                        <p>Exclusive elevated residences</p>
-                    </div>
-                    <div class="portfolio-item">
-                        <div class="portfolio-icon">🏠</div>
-                        <h4>Villas</h4>
-                        <p>Premium standalone properties</p>
-                    </div>
+                <div class="portfolio-video">
+                    <video controls style="width: 100%; max-width: 500px; max-height: 300px; border-radius: 15px;">
+                        <source src="video/portfolio-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
             </div>
         </div>
@@ -1510,6 +1660,16 @@
             <p>© 2025 Goba Peaks by Whistling Woods. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Dot Spinner Page Transition Overlay -->
+    <div class="transition-overlay">
+        <div class="dot-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
 
     <script>
         let currentSlide = 0;
@@ -1568,6 +1728,21 @@
             link.addEventListener('click', function() {
                 mobileMenuToggle.classList.remove('active');
                 mobileNav.classList.remove('active');
+            });
+        });
+
+        // Dot Spinner Transition for Navigation Links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && !href.startsWith('#')) { // Only for page navigation, not anchors
+                    e.preventDefault();
+                    const overlay = document.querySelector('.transition-overlay');
+                    overlay.classList.add('active');
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 800); // Match animation duration
+                }
             });
         });
     </script>

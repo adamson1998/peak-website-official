@@ -303,6 +303,130 @@
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #999;
         }
+
+        /* Dot Spinner Page Transition Animation Styles */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .transition-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dot-spinner {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .dot-spinner div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .dot-spinner div:nth-child(1) {
+            left: 8px;
+            animation: dot-spinner-1 0.6s infinite;
+        }
+
+        .dot-spinner div:nth-child(2) {
+            left: 8px;
+            animation: dot-spinner-2 0.6s infinite;
+        }
+
+        .dot-spinner div:nth-child(3) {
+            left: 32px;
+            animation: dot-spinner-2 0.6s infinite;
+        }
+
+        .dot-spinner div:nth-child(4) {
+            left: 56px;
+            animation: dot-spinner-3 0.6s infinite;
+        }
+
+        @keyframes dot-spinner-1 {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes dot-spinner-3 {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes dot-spinner-2 {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dot-spinner {
+                width: 60px;
+                height: 60px;
+            }
+
+            .dot-spinner div {
+                top: 23px;
+                width: 10px;
+                height: 10px;
+            }
+
+            .dot-spinner div:nth-child(1) {
+                left: 5px;
+            }
+
+            .dot-spinner div:nth-child(2) {
+                left: 5px;
+            }
+
+            .dot-spinner div:nth-child(3) {
+                left: 22px;
+            }
+
+            .dot-spinner div:nth-child(4) {
+                left: 39px;
+            }
+
+            @keyframes dot-spinner-2 {
+                0% {
+                    transform: translate(0, 0);
+                }
+                100% {
+                    transform: translate(17px, 0);
+                }
+            }
+        }
     </style>
 </head>
 <body>
@@ -379,8 +503,8 @@
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #f3e5f5, #ba68c8);">
-                    <div class="amenity-icon">🛏️</div>
+                <div class="amenity-image">
+                    <img src="image/AD4I8315 (1).jpg" alt="Premium Bedding" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="amenity-content">
                     <h3>Premium Bedding</h3>
@@ -399,8 +523,8 @@
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #fff8e1, #ffd54f);">
-                    <div class="amenity-icon">📺</div>
+                <div class="amenity-image">
+                    <img src="image/AD4I8499.jpg" alt="Smart TV & Entertainment" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="amenity-content">
                     <h3>Smart TV & Entertainment</h3>
@@ -419,8 +543,8 @@
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #fce4ec, #ec407a);">
-                    <div class="amenity-icon">🧺</div>
+                <div class="amenity-image">
+                    <img src="image/unnamed (3).webp" alt="Laundry Facilities" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="amenity-content">
                     <h3>Laundry Facilities</h3>
@@ -449,8 +573,8 @@
             </div>
 
             <div class="amenity-card">
-                <div class="amenity-image" style="background: linear-gradient(135deg, #fff9c4, #fff176);">
-                    <div class="amenity-icon">🍽️</div>
+                <div class="amenity-image">
+                    <img src="image/unnamed (2).webp" alt="Fully Equipped Kitchen" style="width: 100%; height: 100%; object-fit: cover;">
                 </div>
                 <div class="amenity-content">
                     <h3>Fully Equipped Kitchen</h3>
@@ -532,6 +656,16 @@
         </div>
     </footer>
 
+    <!-- Dot Spinner Page Transition Overlay -->
+    <div class="transition-overlay">
+        <div class="dot-spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -545,6 +679,19 @@
                     });
                 }
             });
+        });
+
+        // Dot Spinner Page Transition Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.querySelector('.transition-overlay');
+
+            // Show the overlay immediately
+            overlay.classList.add('active');
+
+            // Hide the overlay after 1.5 seconds to simulate page load
+            setTimeout(function() {
+                overlay.classList.remove('active');
+            }, 1500);
         });
     </script>
 </body>

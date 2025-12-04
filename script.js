@@ -24,6 +24,9 @@ function nextSlide() {
     showSlide(currentSlide);
 }
 
+// Initialize the first slide on page load
+showSlide(currentSlide);
+
 // Auto-advance slides every 5 seconds
 setInterval(nextSlide, 5000);
 
@@ -45,18 +48,32 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const mobileNav = document.querySelector('.mobile-nav');
 
-mobileMenuToggle.addEventListener('click', function() {
-    mobileMenuToggle.classList.toggle('active');
-    mobileNav.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.mobile-nav a').forEach(link => {
-    link.addEventListener('click', function() {
-        mobileMenuToggle.classList.remove('active');
-        mobileNav.classList.remove('active');
+if (mobileMenuToggle && mobileNav) {
+    mobileMenuToggle.addEventListener('click', function() {
+        mobileMenuToggle.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
     });
-});
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Close mobile menu when clicking outside
+    mobileNav.addEventListener('click', function(e) {
+        if (e.target === mobileNav) {
+            mobileMenuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+}
 
 // Dot Spinner Transition for Navigation Links
 document.querySelectorAll('nav a').forEach(link => {

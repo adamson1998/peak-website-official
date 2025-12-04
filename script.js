@@ -1,34 +1,41 @@
 // Hero Slider Logic
-let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 
-function showSlide(n) {
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
+// Only initialize slider if slides exist
+if (slides.length > 0) {
+    let currentSlide = 0;
 
-    if (n >= slides.length) currentSlide = 0;
-    if (n < 0) currentSlide = slides.length - 1;
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
 
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-}
+        if (n >= slides.length) currentSlide = 0;
+        if (n < 0) currentSlide = slides.length - 1;
 
-function changeSlide(n) {
-    currentSlide = n;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    function changeSlide(n) {
+        currentSlide = n;
+        showSlide(currentSlide);
+    }
+
+    function nextSlide() {
+        currentSlide++;
+        showSlide(currentSlide);
+    }
+
+    // Initialize the first slide on page load
     showSlide(currentSlide);
+
+    // Auto-advance slides every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Make changeSlide globally accessible for onclick handlers
+    window.changeSlide = changeSlide;
 }
-
-function nextSlide() {
-    currentSlide++;
-    showSlide(currentSlide);
-}
-
-// Initialize the first slide on page load
-showSlide(currentSlide);
-
-// Auto-advance slides every 5 seconds
-setInterval(nextSlide, 5000);
 
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -246,5 +253,79 @@ if (checkInInput) {
             checkInDate.setDate(checkInDate.getDate() + 1);
             checkOutInput.min = checkInDate.toISOString().split('T')[0];
         }
+        updatePricing();
     });
+}
+
+// Check-out date change listener
+const checkOutInput = document.getElementById('checkOut');
+if (checkOutInput) {
+    checkOutInput.addEventListener('change', updatePricing);
+}
+
+// Suite selection change listener
+const suiteSelect = document.getElementById('suitePreference');
+if (suiteSelect) {
+    suiteSelect.addEventListener('change', updatePricing);
+}
+
+// Pricing Calculation Function
+function updatePricing() {
+    const suiteSelect = document.getElementById('suitePreference');
+    const checkInInput = document.getElementById('checkIn');
+    const checkOutInput = document.getElementById('checkOut');
+    const pricingSummary = document.getElementById('pricingSummary');
+
+    if (!suiteSelect || !checkInInput || !checkOutInput || !pricingSummary) return;
+
+    const selectedOption = suiteSelect.options[suiteSelect.selectedIndex];
+    const pricePerNight = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+    const suiteName = selectedOption.text.split(' - ')[0];
+    const checkIn = checkInInput.value;
+    const checkOut = checkOutInput.value;
+
+    // Only show pricing if suite is selected and dates are valid
+    if (pricePerNight > 0 && checkIn && checkOut) {
+        const checkInDate = new Date(checkIn);
+        const checkOutDate = new Date(checkOut);
+        const numberOfNights = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+
+        if (numberOfNights > 0) {
+            const subtotal = pricePerNight * numberOfNights;
+
+            // Check if discount is available (from URL parameter)
+            const urlParams = new URLSearchParams(window.location.search);
+            const hasDiscount = urlParams.get('discount') === 'true';
+            const discountPercent = 0.25; // 25% discount
+            const discountAmount = hasDiscount ? subtotal * discountPercent : 0;
+            const total = subtotal - discountAmount;
+
+            // Update pricing display
+            document.getElementById('selectedSuite').textContent = suiteName;
+            document.getElementById('pricePerNight').textContent = `$${pricePerNight}`;
+            document.getElementById('numberOfNights').textContent = numberOfNights;
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('totalPrice').textContent = `$${total.toFixed(2)}`;
+
+            // Show/hide discount row
+            const discountRow = document.getElementById('discountRow');
+            if (hasDiscount) {
+                document.getElementById('discountAmount').textContent = `-$${discountAmount.toFixed(2)}`;
+                discountRow.style.display = 'flex';
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            pricingSummary.style.display = 'block';
+        } else {
+            pricingSummary.style.display = 'none';
+        }
+    } else {
+        pricingSummary.style.display = 'none';
+    }
+}
+
+// Check for discount on page load
+if (checkInInput || suiteSelect) {
+    updatePricing();
 }
